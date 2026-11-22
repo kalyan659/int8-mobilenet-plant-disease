@@ -12,7 +12,7 @@ field images. Every number in the paper is computed by the scripts in this repos
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24443000.svg)](https://doi.org/10.5281/zenodo.24443000)
 
-This repository is archived on Zenodo: https://doi.org/10.5281/zenodo.24443000 (all versions; v1.0.0 is https://doi.org/10.5281/zenodo.24443001). Large files (saved model outputs, model weights, checkpoints) are archived in a separate Zenodo dataset record: **DOI to be added**.
+This repository is archived on Zenodo: https://doi.org/10.5281/zenodo.24443000 (all versions; v1.0.0 is https://doi.org/10.5281/zenodo.24443001). Large files (saved model outputs, model weights, checkpoints) are archived in a separate Zenodo dataset record (CC BY-NC-SA 4.0): https://doi.org/10.5281/zenodo.24443981.
 
 ## Contents
 
@@ -49,7 +49,8 @@ The datasets are not redistributed here. Both are public on Kaggle:
    ```
    Each run takes about 1.4–2.3 h on a Tesla T4 and writes a `<run>.zip` into `research/runs/`. The runs used Python 3.13,
    PyTorch 2.11.0 (CUDA 13.0), torchvision 0.26.0 and PyTorch's x86 quantized engine. GPU training is not bit-exact.
-3. **Tables and figures (CPU).** With the six run folders in `research/runs/` (from step 2, or from the Zenodo archive):
+3. **Tables and figures (CPU).** With the six run folders in `research/runs/` (from step 2, or by unzipping the Zenodo dataset
+   archive https://doi.org/10.5281/zenodo.24443981 at the repository root):
    ```
    python research/aggregate_runs.py
    python research/make_paper_figures.py
