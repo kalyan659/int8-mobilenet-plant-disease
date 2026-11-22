@@ -1,6 +1,6 @@
 # Paper figures and tables: provenance (generated, do not edit)
 
-Generated 2026-11-16T17:08:47+00:00 by research/make_paper_figures.py
+Generated 2026-11-22T18:26:04+00:00 by research/make_paper_figures.py
 
 Runs (6): mobilenet_v2_seed0 (v2.3.0, torch 2.11.0+cu130), mobilenet_v2_seed1 (v2.3.0, torch 2.11.0+cu130), mobilenet_v2_seed2 (v2.3.0, torch 2.11.0+cu130), mobilenet_v3_small_seed0 (v2.3.0, torch 2.11.0+cu130), mobilenet_v3_small_seed1 (v2.3.0, torch 2.11.0+cu130), mobilenet_v3_small_seed2 (v2.3.0, torch 2.11.0+cu130)
 Dataset fingerprint f0dbac1404290232c53929f0095814f960b3e401a4a23aac474673c72f052508

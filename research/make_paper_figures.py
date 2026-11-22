@@ -9,6 +9,7 @@ which runs, notebook versions, fingerprints and source files produced every outp
 Every number is read from run outputs; nothing is typed in by hand.
 """
 import json
+import textwrap
 import sys
 import zipfile
 from datetime import datetime, timezone
@@ -31,7 +32,7 @@ OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE / "paper_figures"
 # ---------------------------------------------------------------- style (validated categorical palette, fixed order)
 INK, INK2, GRID, SURF = "#0b0b0b", "#52514e", "#e4e3df", "#ffffff"
 PAL = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"]
-plt.rcParams.update({"figure.facecolor": SURF, "axes.facecolor": SURF, "savefig.facecolor": SURF, "font.size": 8,
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "figure.facecolor": SURF, "axes.facecolor": SURF, "savefig.facecolor": SURF, "font.size": 8,
                      "axes.titlesize": 9, "axes.labelsize": 8, "xtick.labelsize": 7, "ytick.labelsize": 7,
                      "legend.fontsize": 7, "axes.edgecolor": INK2, "axes.labelcolor": INK, "text.color": INK,
                      "xtick.color": INK2, "ytick.color": INK2, "axes.grid": True, "axes.axisbelow": True,
@@ -138,24 +139,22 @@ def variants_present(arch):
 
 
 # ================================================================ Fig 1: method overview (static diagram)
-fig, ax = plt.subplots(figsize=(7.2, 2.6))
+fig, ax = plt.subplots(figsize=(7.2, 1.85))
 ax.set_xlim(0, 100)
-ax.set_ylim(0, 30)
+ax.set_ylim(1.5, 22.5)
 ax.axis("off")
-boxes = [(0.5, 12, 17, "PlantVillage (colour)\nMD5 de-duplication\nstratified 70/15/15\nfixed split seed"),
-         (20.5, 12, 17, "Training\nfrozen backbone, then\nfull fine-tune; best\nepoch on validation"),
-         (40.5, 12, 18, "Variants\nFP32 · FP16\nINT8 dynamic (Khan)\nINT8 PTQ · INT8 QAT"),
-         (61.5, 12, 18, "Test sets\nPlantVillage test\nbackground removed\nPlantDoc (field)"),
-         (82.5, 12, 17, "Measurements\naccuracy · F1 · CI\nflips · McNemar · ECE\nlayer census · latency")]
+boxes = [(0.4, 12, 17.6, "PlantVillage\nMD5 de-duplication\n70/15/15 split\nfixed split seed"),
+         (20.5, 12, 17.6, "Training\nfrozen backbone,\nthen fine-tuning;\nbest epoch on\nvalidation"),
+         (40.6, 12, 17.6, "Variants\nFP32 · FP16\nINT8 dynamic\nINT8 PTQ · QAT\noutlier-aware INT8"),
+         (60.7, 12, 17.6, "Test sets\nPlantVillage test\nbackground\nremoved\nPlantDoc (field)"),
+         (80.8, 12, 17.6, "Measurements\naccuracy · F1 · CI\nflips · McNemar\nECE · census\nlatency")]
 for k, (x, y, w, txt) in enumerate(boxes):
     ax.add_patch(FancyBboxPatch((x, y - 9), w, 18, boxstyle="round,pad=0.3,rounding_size=1.2",
                                 fc="#f4f7fc" if k % 2 == 0 else "#fdf4ef", ec=PAL[0] if k % 2 == 0 else PAL[1], lw=1))
-    ax.text(x + w / 2, y, txt, ha="center", va="center", fontsize=6.2, linespacing=1.35)
+    ax.text(x + w / 2, y, txt, ha="center", va="center", fontsize=7, linespacing=1.35)
     if k < len(boxes) - 1:
         ax.annotate("", xy=(boxes[k + 1][0] - 0.6, y), xytext=(x + w + 0.8, y),
                     arrowprops=dict(arrowstyle="->", color=INK2, lw=1))
-ax.text(50, 26.5, "Experimental pipeline: 3 seeds × 2 architectures; no test data used for training, selection or calibration",
-        ha="center", fontsize=7.5)
 save(fig, "fig01_method_overview", "static diagram (no data)")
 
 # ================================================================ Fig 2: dataset gallery + test-set examples
@@ -167,27 +166,29 @@ if first is not None:
     if n:
         cols = 8
         rows = int(np.ceil(n / cols))
-        fig, axes = plt.subplots(rows, cols, figsize=(7.2, 1.05 * rows + 0.3), squeeze=False)
+        fig, axes = plt.subplots(rows, cols, figsize=(7.2, 1.42 * rows), squeeze=False)
         for ax in axes.ravel():
             ax.axis("off")
         for ax, (_, row) in zip(axes.ravel(), gal.iterrows()):
             ax.imshow(Image.open(first["dir"] / "figure_assets" / row["asset"]))
-            ax.set_title(row["label"].replace("___", "\n").replace("_", " ")[:34], fontsize=4.8)
-        fig.suptitle("PlantVillage classes (one held-out test image each)", fontsize=8)
+            crop, _, dis = row["label"].partition("___")
+            label = textwrap.fill(crop.replace("_", " "), 18) + "\n" + textwrap.fill(dis.replace("_", " "), 18)
+            ax.set_title(label, fontsize=6.2, linespacing=1.1)
+        fig.tight_layout(h_pad=0.4, w_pad=0.2)
         save(fig, "fig02a_dataset_gallery", f"{first['run_id']}/figure_assets (gallery)")
     examples = []
     sp = a[a["category"].str.startswith("segpair_both_right")]
     if len(sp):
         pid = sp["pair_id"].iloc[0]
-        examples += [(r_, "PlantVillage (colour)" if r_["view"] == "colour" else "Background removed")
+        examples += [(r_, "PlantVillage (color)" if r_["view"] == "colour" else "Background removed")
                      for _, r_ in sp[sp["pair_id"] == pid].sort_values("view").iterrows()]
     pdx = a[a["category"] == "plantdoc_fp32_right"]
     examples += [(r_, "PlantDoc (field)") for _, r_ in pdx.head(2).iterrows()]
     if examples:
-        fig, axes = plt.subplots(1, len(examples), figsize=(1.6 * len(examples), 1.9), squeeze=False)
+        fig, axes = plt.subplots(1, len(examples), figsize=(1.8 * len(examples), 2.2), squeeze=False)
         for ax, (row, title) in zip(axes[0], examples):
             ax.imshow(Image.open(first["dir"] / "figure_assets" / row["asset"]))
-            ax.set_title(f"{title}\n{row['label'].replace('___', ': ').replace('_', ' ')[:30]}", fontsize=5.5)
+            ax.set_title(f"{title}\n{row['label'].replace('___', ': ').replace('_', ' ')[:30]}", fontsize=6.8)
             ax.axis("off")
         save(fig, "fig02b_test_set_examples", f"{first['run_id']}/figure_assets (segpair, plantdoc)")
 
@@ -202,14 +203,13 @@ for j, arch in enumerate(ARCHS):
             m, s, _ = ms(vals)
             ax.scatter(vals, [k] * len(vals), s=12, facecolors="none", edgecolors=PAL[0], linewidths=0.8, alpha=0.7)
             ax.errorbar(m, k, xerr=0 if pd.isna(s) else s, fmt="o", color=PAL[0], ms=5, capsize=3, lw=1.2)
-            ax.annotate(f"{m:.4f}", (m, k), xytext=(6, 5), textcoords="offset points", fontsize=6)
+            ax.annotate(f"{m:.4f}", (m, k), xytext=(6, 5), textcoords="offset points", fontsize=6.5)
         ax.set_yticks(range(len(vs)))
         ax.set_yticklabels([SHORT[v] for v in vs])
         ax.grid(axis="y", visible=False)
         ax.set_xlabel(lab)
         if i == 0:
             ax.set_title(ARCH_LABEL[arch], loc="left")
-fig.suptitle("PlantVillage test set: mean ± s.d. over seeds (open circles = individual seeds)", fontsize=8)
 fig.tight_layout()
 save(fig, "fig03_clean_accuracy_f1", "runs/*/reports/benchmark_results.csv")
 
@@ -227,7 +227,7 @@ for j, arch in enumerate(ARCHS):
                 error_kw={"lw": 0.8, "ecolor": INK2})
         for k, m in enumerate(means):
             if not np.isnan(m):
-                ax.annotate(f.format(m), (m, k), xytext=(4, -6), textcoords="offset points", fontsize=6)
+                ax.annotate(f.format(m), (m, k), xytext=(4, -6), textcoords="offset points", fontsize=6.5)
         ax.set_yticks(range(len(vs)))
         ax.set_yticklabels([SHORT[v] for v in vs])
         ax.grid(axis="y", visible=False)
@@ -348,9 +348,7 @@ for j, arch in enumerate(ARCHS):
         ax.set_xlabel("Confidence")
         ax.set_ylabel("Accuracy")
         ax.set_title(f"{ARCH_LABEL[arch]} · {tlab}", loc="left", fontsize=7.5)
-        ax.legend(frameon=False, fontsize=5.8, loc="lower right")
-fig.text(0.5, -0.01, f"Bins with fewer than {MIN_BIN} images are not plotted; ECE uses all bins (15 equal-width bins).",
-         ha="center", fontsize=6, color=INK2)
+        ax.legend(frameon=False, fontsize=6.5, loc="lower right")
 fig.tight_layout()
 save(fig, "fig07_reliability_clean_vs_field", "runs/*/predictions/*.npz (pooled over seeds)")
 
@@ -369,7 +367,7 @@ for j, arch in enumerate(ARCHS):
     ax.set_xlabel("Class test support (log)")
     ax.set_ylabel("ΔF1 vs FP32 (mean over seeds)")
     ax.set_title(ARCH_LABEL[arch], loc="left")
-    ax.legend(frameon=False, fontsize=6)
+    ax.legend(frameon=False, fontsize=6.5)
 fig.tight_layout()
 save(fig, "fig08_per_class_delta_f1", "runs/*/reports/per_class_f1.csv")
 
@@ -385,7 +383,7 @@ for j, arch in enumerate(ARCHS):
     ax.set_xlabel("Epoch")
     ax.set_ylabel("Score")
     ax.set_title(ARCH_LABEL[arch], loc="left")
-    ax.legend(frameon=False, fontsize=5.5)
+    ax.legend(frameon=False, fontsize=6.5)
 fig.tight_layout()
 save(fig, "fig09_training_curves", "runs/*/reports/training_history.csv")
 
@@ -403,12 +401,15 @@ def grid(rows_, run, name, title, captions):
     if not len(rows_):
         return
     n = min(len(rows_), 8)
-    fig, axes = plt.subplots(1, n, figsize=(1.3 * n, 2.25), squeeze=False)
-    for ax, (_, row) in zip(axes[0], rows_.head(n).iterrows()):
-        ax.imshow(square(run["dir"] / "figure_assets" / row["asset"]))
-        ax.set_title(captions(row), fontsize=4.4)
+    cols = min(n, 4)
+    nrows = int(np.ceil(n / cols))
+    fig, axes = plt.subplots(nrows, cols, figsize=(1.8 * cols, 2.45 * nrows), squeeze=False)
+    for ax in axes.ravel():
         ax.axis("off")
-    fig.suptitle(title, fontsize=7, y=1.04)
+    for ax, (_, row) in zip(axes.ravel(), rows_.head(n).iterrows()):
+        ax.imshow(square(run["dir"] / "figure_assets" / row["asset"]))
+        ax.set_title(captions(row), fontsize=6.2, linespacing=1.15)
+    fig.tight_layout(h_pad=0.6, w_pad=0.3)   # title argument kept for the manifest only; titles go in the caption
     src = f"{run['run_id']}/figure_assets/manifest.csv"
     if rows_.head(n)["test_set"].astype(str).str.startswith("plantdoc").any():
         src += " | LICENCE CHECK: PlantDoc images are web-scraped (some carry stock-photo watermarks); do not print without rights"
@@ -419,6 +420,9 @@ def short_c(s):
     crop, _, dis = str(s).partition("___")
     crop = crop.split("_(")[0].split(",")[0].replace("_", " ")
     return f"{crop}: {dis.replace('_', ' ')}"[:26]
+
+
+VIEW_LABEL = {"colour": "Color", "segmented": "Background removed"}   # data key 'colour' (manifest) -> displayed label
 for arch in ARCHS:
     r = next((r for r in runs if r["arch"] == arch and len(r["assets"])), None)
     if r is None:
@@ -435,7 +439,7 @@ for arch in ARCHS:
     sp = a[a["category"] == "segpair_colour_right_seg_wrong"].sort_values(["pair_id", "view"])
     if len(sp):
         grid(sp, r, f"fig11_background_pairs_{arch}", f"{ARCH_LABEL[arch]}: same leaf, colour vs background removed (FP32)",
-             lambda row: f"{row['view']}\ntrue: {short_c(row['label'])}\nFP32: {short_c(row['pred__fp32'])}")
+             lambda row: f"{VIEW_LABEL.get(row['view'], row['view'])}\ntrue: {short_c(row['label'])}\nFP32: {short_c(row['pred__fp32'])}")
 
 # ================================================================ Tables
 cfg0 = runs[0]["cfg"]["derived"]

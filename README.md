@@ -3,7 +3,7 @@
 Code, run records and results for the manuscript
 
 > Kalyanbrat Medhi and Sanjib Kr. Kalita. *Auditing INT8 quantization of MobileNets for plant disease recognition: compression
-> accounting, an outlier-aware fix and behaviour under field shift.* Submitted to *Computers and Electronics in Agriculture*.
+> accounting, an outlier-aware fix and behavior under field shift.* Submitted to *Computers and Electronics in Agriculture*.
 
 The study trains MobileNetV2 and MobileNetV3-Small on PlantVillage (38 classes, three seeds, one fixed de-duplicated split) and
 compares FP32, FP16, dynamic INT8, static INT8 post-training quantization (PTQ), quantization-aware training (QAT) and the proposed
@@ -33,7 +33,7 @@ This repository is archived on Zenodo: https://doi.org/10.5281/zenodo.24443000 (
 
 The datasets are not redistributed here. Both are public on Kaggle:
 
-* PlantVillage (colour and segmented): https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset (Hughes and Salathé, 2015)
+* PlantVillage (color and segmented): https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset (Hughes and Salathé, 2015)
 * PlantDoc: https://www.kaggle.com/datasets/nirmalsankalana/plantdoc-dataset (Singh et al., 2020)
 
 ## Reproducing the results
@@ -65,8 +65,8 @@ Without retraining, steps 3 and 4 reproduce every table, figure and statistic fr
 As stated in the paper, the code in this repository was written with an AI assistant (Claude, Anthropic), which also ran the
 Kaggle experiments and the analyses; the research question, choice of experiments, analysis and conclusions are the authors'.
 
-## Licence
+## License
 
 Code: MIT (see `LICENSE`). Results, tables, figures and run records in this repository: CC BY 4.0. Model weights, checkpoints and
 saved model outputs on Zenodo: CC BY-NC-SA 4.0, because the models were trained on PlantVillage images (CC BY-NC-SA 4.0). See
-`LICENSE-DATA.md`. The datasets keep their own licences.
+`LICENSE-DATA.md`. The datasets keep their own licenses.

@@ -27,7 +27,7 @@ RUNS, OUT = R / "runs", R / "paper_figures"
 (OUT / "figures").mkdir(parents=True, exist_ok=True)
 (OUT / "tables").mkdir(parents=True, exist_ok=True)
 PAL = ["#2a78d6", "#eb6834"]
-plt.rcParams.update({"font.size": 8, "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True,
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42, "font.size": 8, "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True,
                      "grid.color": "#e4e3df", "axes.axisbelow": True, "pdf.fonttype": 42})
 
 tf = transforms.Compose([transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor(),
