@@ -1,0 +1,23 @@
+{
+  "title": "INT8 MobileNets for plant disease recognition: code and results",
+  "upload_type": "software",
+  "description": "<p>Code, run records and results for the manuscript <em>Auditing INT8 quantization of MobileNets for plant disease recognition: compression accounting, an outlier-aware fix and behaviour under field shift</em> (K. Medhi and S. K. Kalita, submitted to Computers and Electronics in Agriculture).</p><p>Contents: the experiment notebook generator (v2.3.0) and generated notebook, Kaggle run scripts with the exact notebooks that ran, aggregation, figure and evidence scripts with their saved outputs, per-run configurations and reports for six training runs (MobileNetV2 and MobileNetV3-Small, three seeds), the shared PlantVillage data split, the pre-registered pilot plan and the research log. Large files (model weights, checkpoints and saved model outputs) are archived in a separate Zenodo dataset record. The PlantVillage and PlantDoc datasets are not redistributed.</p>",
+  "creators": [
+    {
+      "name": "Medhi, Kalyanbrat",
+      "affiliation": "Department of Computer Science, Gauhati University",
+      "orcid": "0000-0003-3654-204X"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "plant disease classification",
+    "INT8 quantization",
+    "MobileNet",
+    "edge AI",
+    "distribution shift",
+    "PlantVillage",
+    "PlantDoc"
+  ]
+}
