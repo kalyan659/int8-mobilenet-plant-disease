@@ -1,12 +1,15 @@
-# Licence for results and run records
+# Licences for results, run records and model files
 
-The results, tables, figures, run configurations, reports, research log and the archived model outputs and model files of this
-project are licensed under the **Creative Commons Attribution 4.0 International licence (CC BY 4.0)**:
-https://creativecommons.org/licenses/by/4.0/
-
+**Results and run records in this repository** (tables, figures, run configurations, reports and the research log) are licensed
+under the **Creative Commons Attribution 4.0 International licence (CC BY 4.0)**: https://creativecommons.org/licenses/by/4.0/.
 You may share and adapt them for any purpose, provided you give appropriate credit by citing the paper and this repository.
 
-This licence does not cover the PlantVillage and PlantDoc datasets, which keep their own licences, nor the dataset images that
-appear inside some figures, which remain under the licences of their datasets.
+**Model weights, checkpoints and saved model outputs** (archived in the separate Zenodo dataset record) are licensed under the
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International licence (CC BY-NC-SA 4.0)**:
+https://creativecommons.org/licenses/by-nc-sa/4.0/. The models were trained on the PlantVillage images, whose Kaggle distribution
+is licensed CC BY-NC-SA 4.0, so these files are released under the same terms.
+
+Neither licence covers the datasets themselves, which keep their own licences (PlantVillage on Kaggle: CC BY-NC-SA 4.0; PlantDoc
+on Kaggle: CC0 1.0), nor the dataset images that appear inside some figures, which remain under the licences of their datasets.
 
 The code is licensed separately under the MIT licence (`LICENSE`).

@@ -10,7 +10,9 @@ compares FP32, FP16, dynamic INT8, static INT8 post-training quantization (PTQ),
 outlier-aware selective INT8 on the PlantVillage test set, on the same test leaves with their backgrounds removed, and on PlantDoc
 field images. Every number in the paper is computed by the scripts in this repository from the saved run outputs.
 
-Large files (saved model outputs, model weights, checkpoints) are archived on Zenodo: **DOI to be added**.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24443000.svg)](https://doi.org/10.5281/zenodo.24443000)
+
+This repository is archived on Zenodo: https://doi.org/10.5281/zenodo.24443000 (all versions; v1.0.0 is https://doi.org/10.5281/zenodo.24443001). Large files (saved model outputs, model weights, checkpoints) are archived in a separate Zenodo dataset record: **DOI to be added**.
 
 ## Contents
 
@@ -64,5 +66,6 @@ Kaggle experiments and the analyses; the research question, choice of experiment
 
 ## Licence
 
-Code: MIT (see `LICENSE`). Results, tables, figures and run records: CC BY 4.0 (see `LICENSE-DATA.md`). The datasets keep their
-own licences.
+Code: MIT (see `LICENSE`). Results, tables, figures and run records in this repository: CC BY 4.0. Model weights, checkpoints and
+saved model outputs on Zenodo: CC BY-NC-SA 4.0, because the models were trained on PlantVillage images (CC BY-NC-SA 4.0). See
+`LICENSE-DATA.md`. The datasets keep their own licences.
