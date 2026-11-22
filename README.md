@@ -23,6 +23,7 @@ This repository is archived on Zenodo: https://doi.org/10.5281/zenodo.24443000 (
 | `kaggle/` | Scripts that build, push and fetch the Kaggle runs; `kernels/` holds the exact notebooks and metadata that ran. |
 | `research/aggregate_runs.py` | Aggregates the six runs into `research/aggregated/` (refuses runs with different data or split fingerprints). |
 | `research/make_paper_figures.py` | Produces every figure and table of the paper into `research/paper_figures/` (with `MANIFEST.md` provenance). |
+| `research/make_graphical_abstract.py` | Draws the graphical abstract from the paper's tables (`research/paper_figures/graphical_abstract/`). |
 | `research/evidence/` | Smaller analyses cited in the paper (quantization facts, collapse diagnosis, outlier rule, flip-confidence, fusion latency), each with its saved output (`.out.txt`). |
 | `research/runs/<run>/` | Per-run configuration (library versions, fingerprints, quantization warnings) and reports: metrics, shift results, training and QAT histories, per-class F1, calibration subset, duplicate list, PlantDoc class map. |
 | `research/split_manifest.csv` | The train/validation/test assignment of every PlantVillage image (identical in all runs). |
