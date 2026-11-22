@@ -1,0 +1,7 @@
+127 images; threshold 16.0x
+
+mobilenet_v2: 52 BN outputs | top-5 ratios: features.12.conv.1.1 16.3x, features.15.conv.1.1 10.6x, features.16.conv.1.1 10.4x, features.13.conv.0.1 9.4x, features.13.conv.1.1 9.1x
+   flagged (> 16.0x): ['features.12.conv.1.1']
+
+mobilenet_v3_small: 34 BN outputs | top-5 ratios: features.0.1 70.4x, features.5.block.0.1 6.8x, features.2.block.0.1 6.8x, features.6.block.0.1 6.2x, features.3.block.0.1 6.0x
+   flagged (> 16.0x): ['features.0.1']

@@ -1,0 +1,19 @@
+# large run artefacts live on Zenodo, not in git
+*.zip
+*.pt
+*.pth
+*.npz
+research/runs/*/checkpoints/
+research/runs/*/models/
+research/runs/*/predictions/
+research/runs/*/figure_assets/
+research/runs/*/figures/
+research/runs/_*/
+
+# never commit credentials or local environments
+kaggle.json
+.env
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the paper (citation will be added on publication) and this repository."
+title: "INT8 MobileNets for plant disease recognition: code and results"
+type: software
+authors:
+  - family-names: Medhi
+    given-names: Kalyanbrat
+    orcid: "https://orcid.org/0000-0003-3654-204X"
+    affiliation: "Department of Computer Science, Gauhati University"
+license: MIT
+version: "1.0.0"
+keywords:
+  - plant disease classification
+  - INT8 quantization
+  - MobileNet
+  - edge AI
+  - distribution shift
+  - PlantVillage
+  - PlantDoc

@@ -1,0 +1,10 @@
+354 unique PlantVillage test-split images
+MobileNetV3-Small  ImageNet weights     channels 16 | median   3.624 | max  158.742 | ratio   43.8x
+MobileNetV3-Small  fine-tuned seed 0    channels 16 | median   5.198 | max  173.232 | ratio   33.3x
+MobileNetV3-Small  fine-tuned seed 1    channels 16 | median   5.180 | max  173.452 | ratio   33.5x
+MobileNetV3-Small  fine-tuned seed 2    channels 16 | median   5.173 | max  173.881 | ratio   33.6x
+MobileNetV2        ImageNet weights     channels 32 | median   0.782 | max    4.807 | ratio    6.1x
+MobileNetV2        fine-tuned seed 0    channels 32 | median   1.163 | max    4.344 | ratio    3.7x
+MobileNetV2        fine-tuned seed 1    channels 32 | median   1.116 | max    4.348 | ratio    3.9x
+MobileNetV2        fine-tuned seed 2    channels 32 | median   1.073 | max    4.274 | ratio    4.0x
+saved fig12

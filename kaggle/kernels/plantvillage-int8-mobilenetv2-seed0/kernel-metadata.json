@@ -1,0 +1,19 @@
+{
+  "id": "your-kaggle-username/plantvillage-int8-mobilenetv2-seed0",
+  "title": "PlantVillage INT8 MobileNetV2 Seed0",
+  "code_file": "plantvillage-int8-mobilenetv2-seed0.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdallahalidev/plantvillage-dataset",
+    "nirmalsankalana/plantdoc-dataset"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

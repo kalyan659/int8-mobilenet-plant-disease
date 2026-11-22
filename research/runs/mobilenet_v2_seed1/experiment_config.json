@@ -1,0 +1,268 @@
+{
+  "notebook_version": "2.3.0",
+  "run_id": "mobilenet_v2_seed1",
+  "run_started_utc": "2026-11-16T06:30:32+00:00",
+  "config": {
+    "ARCH": "mobilenet_v2",
+    "SEED": 1,
+    "SPLIT_SEED": 42,
+    "RUN_TAG": "",
+    "DATA_DIR": null,
+    "SEGMENTED_DIR": null,
+    "PLANTDOC_DIR": null,
+    "INPUT_ROOT": "/kaggle/input",
+    "OUTPUT_ROOT": "/kaggle/working/plant_disease_results",
+    "PREFERRED_VARIANT": "color",
+    "RUN_SEGMENTED_TEST": true,
+    "RUN_PLANTDOC_TEST": true,
+    "PLANTDOC_EVAL_ALL": true,
+    "PLANTDOC_CLASS_MAP": null,
+    "DETERMINISTIC": false,
+    "IMG_SIZE": 224,
+    "RESIZE_SIZE": 256,
+    "BATCH_SIZE": 64,
+    "EVAL_BATCH_SIZE": 128,
+    "NUM_WORKERS": null,
+    "TRAIN_FRAC": 0.7,
+    "VAL_FRAC": 0.15,
+    "TEST_FRAC": 0.15,
+    "DEDUPLICATE": true,
+    "MAX_IMAGES_PER_CLASS": null,
+    "SHOW_PROGRESS": false,
+    "PRETRAINED": true,
+    "DROPOUT": 0.2,
+    "DEVICE": "cuda:0",
+    "USE_AMP": true,
+    "USE_DATA_PARALLEL": false,
+    "HEAD_EPOCHS": 3,
+    "HEAD_LR": 0.001,
+    "FINETUNE_EPOCHS": 15,
+    "FINETUNE_LR_BACKBONE": 0.0001,
+    "FINETUNE_LR_HEAD": 0.0005,
+    "WARMUP_EPOCHS": 1,
+    "MIN_LR_RATIO": 0.01,
+    "WEIGHT_DECAY": 0.0001,
+    "LABEL_SMOOTHING": 0.1,
+    "GRAD_CLIP_NORM": 2.0,
+    "EARLY_STOPPING_PATIENCE": 4,
+    "MIN_DELTA": 0.0001,
+    "RUN_FP16": true,
+    "RUN_DYNAMIC_QUANT": true,
+    "QUANT_BACKEND": "auto",
+    "RUN_PTQ": true,
+    "PTQ_METHOD": "auto",
+    "CALIBRATION_IMAGES": 1024,
+    "RUN_QAT": true,
+    "QAT_METHOD": "auto",
+    "QAT_EPOCHS": 3,
+    "QAT_LR": 1e-05,
+    "QAT_FREEZE_BN_EPOCH": 1,
+    "QAT_FREEZE_OBSERVER_EPOCH": 2,
+    "QAT_MAX_STEPS_PER_EPOCH": null,
+    "RUN_OUTLIER_AWARE": true,
+    "OUTLIER_RATIO_THRESHOLD": 16.0,
+    "BOOTSTRAP_ITERS": 1000,
+    "ECE_BINS": 15,
+    "CPU_THREADS": null,
+    "LATENCY_WARMUP": 10,
+    "LATENCY_RUNS": 50,
+    "GPU_THROUGHPUT_BATCH": 64,
+    "EXPORT_TORCHSCRIPT": true,
+    "ZIP_INCLUDE_CHECKPOINTS": true
+  },
+  "derived": {
+    "arch": "mobilenet_v2",
+    "seed": 1,
+    "split_seed": 42,
+    "device": "cuda:0",
+    "amp": true,
+    "num_workers": 4,
+    "cpu_threads_N": 4,
+    "pretrained_effective": true,
+    "num_classes": 38,
+    "class_names": [
+      "Apple___Apple_scab",
+      "Apple___Black_rot",
+      "Apple___Cedar_apple_rust",
+      "Apple___healthy",
+      "Blueberry___healthy",
+      "Cherry_(including_sour)___Powdery_mildew",
+      "Cherry_(including_sour)___healthy",
+      "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+      "Corn_(maize)___Common_rust_",
+      "Corn_(maize)___Northern_Leaf_Blight",
+      "Corn_(maize)___healthy",
+      "Grape___Black_rot",
+      "Grape___Esca_(Black_Measles)",
+      "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+      "Grape___healthy",
+      "Orange___Haunglongbing_(Citrus_greening)",
+      "Peach___Bacterial_spot",
+      "Peach___healthy",
+      "Pepper,_bell___Bacterial_spot",
+      "Pepper,_bell___healthy",
+      "Potato___Early_blight",
+      "Potato___Late_blight",
+      "Potato___healthy",
+      "Raspberry___healthy",
+      "Soybean___healthy",
+      "Squash___Powdery_mildew",
+      "Strawberry___Leaf_scorch",
+      "Strawberry___healthy",
+      "Tomato___Bacterial_spot",
+      "Tomato___Early_blight",
+      "Tomato___Late_blight",
+      "Tomato___Leaf_Mold",
+      "Tomato___Septoria_leaf_spot",
+      "Tomato___Spider_mites Two-spotted_spider_mite",
+      "Tomato___Target_Spot",
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+      "Tomato___Tomato_mosaic_virus",
+      "Tomato___healthy"
+    ],
+    "parameters": 2272550,
+    "flops": 599085824,
+    "flops_tool": "torch.utils.flop_counter.FlopCounterMode",
+    "dataset_path": "/kaggle/input/plantvillage-dataset/color",
+    "dataset_roots": [
+      "/kaggle/input/plantvillage-dataset/color"
+    ],
+    "dataset_source": "auto",
+    "dataset_fingerprint": "f0dbac1404290232c53929f0095814f960b3e401a4a23aac474673c72f052508",
+    "split_fingerprint": "32b732ea792d09c3ac705313f2cd83a43538abd6452e1e18d01c36254b50d645",
+    "images_before_dedup": 54305,
+    "duplicates_removed": 21,
+    "label_conflicts_removed": 0,
+    "split_sizes": {
+      "train": 37998,
+      "val": 8143,
+      "test": 8143
+    },
+    "calibration_images": 1024,
+    "best_checkpoint": {
+      "phase": "finetune",
+      "epoch": 14,
+      "val_f1_macro": 0.9959310108336988,
+      "val_accuracy": 0.9969298784231856
+    },
+    "shift_test_sets": {
+      "pv_segmented": {
+        "status": "ok",
+        "dir": "/kaggle/input/plantvillage-dataset/segmented",
+        "matched": 7964,
+        "test_size": 8143,
+        "match_rate": 0.978
+      },
+      "plantdoc": {
+        "status": "ok",
+        "dir": "/kaggle/input/plantdoc-dataset/test",
+        "images": 252,
+        "unreadable_skipped": 0,
+        "identical_to_plantvillage_removed": 0,
+        "mapped_folders": 27,
+        "unmapped_folders": [],
+        "target_classes": 28
+      },
+      "plantdoc_all": {
+        "status": "ok",
+        "dirs": [
+          "/kaggle/input/plantdoc-dataset/test",
+          "/kaggle/input/plantdoc-dataset/train"
+        ],
+        "images": 2911,
+        "unreadable_skipped": 0,
+        "duplicates_removed": 6,
+        "label_conflict_hashes_dropped": 5
+      }
+    },
+    "quantization": {
+      "api": "torch.ao.quantization",
+      "import_error": null,
+      "supported_engines": [
+        "qnnpack",
+        "onednn",
+        "x86",
+        "fbgemm"
+      ],
+      "engine": "x86",
+      "warnings": {
+        "dynamic.quantize": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua"
+        ],
+        "ptq_eager.prepare": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "ptq_eager.convert": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua"
+        ],
+        "qat_eager.prepare": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "qat_eager.convert": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua"
+        ],
+        "outlier.prepare": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "ptq_fx.prepare": [
+          "DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "ptq_fx.convert": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "qat_custom.prepare": [
+          "DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ],
+        "qat_fx.convert": [
+          "DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. \nFor migrations of users: \n1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead \n2. FX graph mode quantization (torch.ao.qua",
+          "UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch."
+        ]
+      }
+    }
+  },
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+    "torch": "2.11.0+cu130",
+    "torchvision": "0.26.0+cu130",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "cuda": "13.0",
+    "cudnn": 92700,
+    "gpus": [
+      {
+        "index": 0,
+        "name": "Tesla T4",
+        "memory_gb": 15.64
+      },
+      {
+        "index": 1,
+        "name": "Tesla T4",
+        "memory_gb": 15.64
+      }
+    ],
+    "cpu_count": 4,
+    "device": "cuda:0",
+    "amp": true
+  },
+  "timings_s": {
+    "data_indexing_s": 840.2,
+    "train_head_s": 476.4,
+    "train_finetune_s": 2502.1,
+    "eval_fp32_s": 211.1,
+    "fp16_s": 133.7,
+    "dynamic_s": 1215.3,
+    "ptq_s": 301.4,
+    "qat_s": 964.8,
+    "outlier_aware_s": 1430.5,
+    "total_s": 8307.8
+  }
+}

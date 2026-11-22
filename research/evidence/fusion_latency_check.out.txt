@@ -1,0 +1,40 @@
+torch 2.15.0+cpu | torchvision 0.29.2+cpu | quantized engine onednn
+Intel64 Family 6 Model 154 Stepping 3, GenuineIntel | Windows 10 | logical CPUs 8 (default)
+protocol: batch 1, 10 warm-up + median of 50 runs; 5 interleaved rounds, median over rounds
+
+== mobilenet_v2 (seed 0) | fusion check: max |logit difference| fused vs unfused = 2.62e-06
+  1 thread(s)
+    FP32 unfused (eager)                       18.21 ms  (rounds 18.04-25.01)  speed-up vs FP32 unfused eager  1.00x
+    FP32 fused (eager)                         16.45 ms  (rounds 16.14-17.37)  speed-up vs FP32 unfused eager  1.11x
+    FP32 unfused (TorchScript)                 16.47 ms  (rounds 16.17-16.51)  speed-up vs FP32 unfused eager  1.11x
+    FP32 fused (TorchScript)                   15.34 ms  (rounds 15.17-15.80)  speed-up vs FP32 unfused eager  1.19x
+    INT8 PTQ (TorchScript)                      6.46 ms  (rounds 6.22-6.90)  speed-up vs FP32 unfused eager  2.82x
+    INT8 PTQ outlier-aware (TorchScript)        7.29 ms  (rounds 6.99-7.64)  speed-up vs FP32 unfused eager  2.50x
+    -> fusion alone (eager): 1.11x | INT8 PTQ vs FP32 fused (both TorchScript): 2.37x | INT8 PTQ vs FP32 unfused (both TorchScript): 2.55x
+  4 thread(s)
+    FP32 unfused (eager)                       13.74 ms  (rounds 12.77-19.57)  speed-up vs FP32 unfused eager  1.00x
+    FP32 fused (eager)                         12.90 ms  (rounds 11.85-19.24)  speed-up vs FP32 unfused eager  1.07x
+    FP32 unfused (TorchScript)                 10.85 ms  (rounds 9.96-17.31)  speed-up vs FP32 unfused eager  1.27x
+    FP32 fused (TorchScript)                   10.29 ms  (rounds 9.62-14.97)  speed-up vs FP32 unfused eager  1.33x
+    INT8 PTQ (TorchScript)                      6.45 ms  (rounds 5.64-10.08)  speed-up vs FP32 unfused eager  2.13x
+    INT8 PTQ outlier-aware (TorchScript)        6.90 ms  (rounds 5.81-11.37)  speed-up vs FP32 unfused eager  1.99x
+    -> fusion alone (eager): 1.07x | INT8 PTQ vs FP32 fused (both TorchScript): 1.60x | INT8 PTQ vs FP32 unfused (both TorchScript): 1.68x
+
+== mobilenet_v3_small (seed 0) | fusion check: max |logit difference| fused vs unfused = 4.41e-06
+  1 thread(s)
+    FP32 unfused (eager)                        6.82 ms  (rounds 6.16-8.37)  speed-up vs FP32 unfused eager  1.00x
+    FP32 fused (eager)                          5.76 ms  (rounds 5.62-6.74)  speed-up vs FP32 unfused eager  1.18x
+    FP32 unfused (TorchScript)                  5.12 ms  (rounds 4.88-5.39)  speed-up vs FP32 unfused eager  1.33x
+    FP32 fused (TorchScript)                    4.58 ms  (rounds 4.18-4.72)  speed-up vs FP32 unfused eager  1.49x
+    INT8 PTQ (TorchScript)                     25.32 ms  (rounds 22.63-25.55)  speed-up vs FP32 unfused eager  0.27x
+    INT8 PTQ outlier-aware (TorchScript)       23.82 ms  (rounds 21.99-25.04)  speed-up vs FP32 unfused eager  0.29x
+    -> fusion alone (eager): 1.18x | INT8 PTQ vs FP32 fused (both TorchScript): 0.18x | INT8 PTQ vs FP32 unfused (both TorchScript): 0.20x
+  4 thread(s)
+    FP32 unfused (eager)                        7.67 ms  (rounds 5.87-8.12)  speed-up vs FP32 unfused eager  1.00x
+    FP32 fused (eager)                          6.30 ms  (rounds 6.02-6.55)  speed-up vs FP32 unfused eager  1.22x
+    FP32 unfused (TorchScript)                  5.30 ms  (rounds 5.16-6.12)  speed-up vs FP32 unfused eager  1.45x
+    FP32 fused (TorchScript)                    5.12 ms  (rounds 4.67-5.34)  speed-up vs FP32 unfused eager  1.50x
+    INT8 PTQ (TorchScript)                     17.94 ms  (rounds 16.35-19.78)  speed-up vs FP32 unfused eager  0.43x
+    INT8 PTQ outlier-aware (TorchScript)       16.85 ms  (rounds 16.42-19.42)  speed-up vs FP32 unfused eager  0.46x
+    -> fusion alone (eager): 1.22x | INT8 PTQ vs FP32 fused (both TorchScript): 0.29x | INT8 PTQ vs FP32 unfused (both TorchScript): 0.30x
+

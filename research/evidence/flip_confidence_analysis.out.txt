@@ -1,0 +1,24 @@
+Per test set (mean over 3 seeds):
+                                 fp32_mean_conf  flip_rate  conf_flipped  conf_unflipped
+arch               test_set                                                             
+mobilenet_v2       plantdoc_all           0.390      0.177         0.215           0.428
+                   pv_segmented           0.650      0.055         0.289           0.671
+                   pv_test                0.902      0.003         0.505           0.903
+mobilenet_v3_small plantdoc_all           0.278      0.330         0.182           0.325
+                   pv_segmented           0.480      0.204         0.310           0.523
+                   pv_test                0.881      0.009         0.531           0.884
+
+Flip rate by FP32-confidence bin (pooled over 3 seeds; n = images in bin):
+                                      n                             flips                         flip_rate                     
+test_set                   plantdoc_all pv_segmented pv_test plantdoc_all pv_segmented pv_test plantdoc_all pv_segmented pv_test
+arch               bin                                                                                                          
+mobilenet_v2       0.0-0.3         3844         2142       6         1284          783       4        0.334        0.366   0.667
+                   0.3-0.5         2475         4078     106          245          492      38        0.099        0.121   0.358
+                   0.5-0.7         1290         5092     335           20           37      21        0.016        0.007   0.063
+                   0.7-0.9          986        11279    6612            1            0       9        0.001        0.000   0.001
+                   0.9-1.0          138         1301   17370            0            0       0        0.000        0.000   0.000
+mobilenet_v3_small 0.0-0.3         5875         5910      39         2626         2579      11        0.447        0.436   0.282
+                   0.3-0.5         1844         7744     255          240         1855      97        0.130        0.240   0.380
+                   0.5-0.7          697         5567     757           20          384      77        0.029        0.069   0.102
+                   0.7-0.9          282         4010   10539            0           46      44        0.000        0.011   0.004
+                   0.9-1.0           35          661   12839            0           14       1        0.000        0.021   0.000

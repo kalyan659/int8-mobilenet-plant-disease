@@ -1,0 +1,14 @@
+engine onednn | 127 images (63 calibration) | threshold 16.0x
+
+mobilenet_v2:
+   round: flagged tensors [('activation_post_process_60', 21.7)] -> float modules ['features.17']
+   round: flagged tensors [] -> float modules []
+   plain FX PTQ                       float modules  0 | agreement with FP32 0.984 | logit cos 0.999
+   outlier-aware PTQ (block-level)    float modules  1 | agreement with FP32 0.984 | logit cos 0.999
+
+mobilenet_v3_small:
+   round: flagged tensors [('activation_post_process_1', 88.7), ('activation_post_process_2', 37.5)] -> float modules ['features.0', 'features.1']
+   round: flagged tensors [] -> float modules []
+   plain FX PTQ                       float modules  0 | agreement with FP32 0.197 | logit cos 0.526
+   outlier-aware PTQ (block-level)    float modules  2 | agreement with FP32 0.937 | logit cos 0.990
+

@@ -1,0 +1,17 @@
+torch 2.15.0+cpu | torchvision 0.29.2+cpu | engines ['onednn']
+
+[F1] FP32 MobileNetV3-small, 38 classes
+  parameters() = 1,556,806 | Linear-layer params = 629,798 | state_dict = 6.357 MB
+  after quantize_dynamic({nn.Linear, nn.Conv2d}, qint8):
+  parameters() = 927,008 (= FP32 total - Linear params: 927,008) | state_dict = 4.472 MB
+  layer census: {'fp32 Conv2dNormActivation': 34, 'fp32 Conv2d': 52, 'int8 Linear': 2, 'int8 LinearPackedParams': 2}
+
+[F2] FX static PTQ of MobileNetV3-small
+  engine onednn | module census: {'int8 Conv2d': 38, 'int8 ConvReLU2d': 14, 'int8 Linear': 2, 'int8 LinearPackedParams': 2}
+  float ops left in graph: {'<built-in method flatten of type object at 0x00007FFCBCC7D7B0>': 1}
+  state_dict = 1.862 MB | top-1 agreement FP32 vs INT8 on random inputs (ImageNet weights, not a PlantVillage result): 0.000
+
+[F3] Control: same FX static PTQ on MobileNetV2 vs MobileNetV3-small, ImageNet weights, 1000-class heads,
+     smooth synthetic images (low-frequency noise, ImageNet-normalised); calibrate on 64, evaluate on 64 others
+  MobileNetV2        top-1 agreement 0.406 | mean logit cosine 0.827 | engine onednn
+  MobileNetV3-small  top-1 agreement 0.172 | mean logit cosine 0.865 | engine onednn

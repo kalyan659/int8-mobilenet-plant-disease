@@ -1,0 +1,46 @@
+**Paired comparison with FP32 on the PlantVillage test set, per run**
+
+| run_id | experiment | flip_rate_vs_fp32 | mcnemar_b_fp32_right_variant_wrong | mcnemar_c_fp32_wrong_variant_right | mcnemar_p | delta_accuracy | delta_accuracy_ci_low | delta_accuracy_ci_high |
+|---|---|---|---|---|---|---|---|---|
+| mobilenet_v2_seed0 | FP16 (autocast) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed0 | FP16 (converted) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed0 | INT8 dynamic (Khan et al.) | 0.0002456 | 1 | 1 | 1 | 0 | -0.0003684 | 0.0003684 |
+| mobilenet_v2_seed0 | INT8 PTQ | 0.002333 | 9 | 10 | 1 | 0.0001228 | -0.0008596 | 0.001105 |
+| mobilenet_v2_seed0 | INT8 QAT | 0.003807 | 22 | 9 | 0.02945 | -0.001596 | -0.003073 | -0.0002425 |
+| mobilenet_v2_seed0 | INT8 PTQ outlier-aware (ours) | 0.002333 | 11 | 8 | 0.6476 | -0.0003684 | -0.001474 | 0.000614 |
+| mobilenet_v2_seed0 | INT8 QAT outlier-aware (ours) | 0.003316 | 22 | 5 | 0.001514 | -0.002088 | -0.003439 | -0.0008596 |
+| mobilenet_v2_seed1 | FP16 (autocast) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed1 | FP16 (converted) | 0.0001228 | 0 | 1 | 1 | 0.0001228 | 0 | 0.0003684 |
+| mobilenet_v2_seed1 | INT8 dynamic (Khan et al.) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed1 | INT8 PTQ | 0.004053 | 24 | 9 | 0.01353 | -0.001842 | -0.003316 | -0.0004912 |
+| mobilenet_v2_seed1 | INT8 QAT | 0.004421 | 28 | 8 | 0.001193 | -0.002456 | -0.004053 | -0.0009824 |
+| mobilenet_v2_seed1 | INT8 PTQ outlier-aware (ours) | 0.003316 | 22 | 5 | 0.001514 | -0.002088 | -0.003439 | -0.0008596 |
+| mobilenet_v2_seed1 | INT8 QAT outlier-aware (ours) | 0.005403 | 36 | 8 | 2.545e-05 | -0.003439 | -0.005158 | -0.001842 |
+| mobilenet_v2_seed2 | FP16 (autocast) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed2 | FP16 (converted) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed2 | INT8 dynamic (Khan et al.) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v2_seed2 | INT8 PTQ | 0.002456 | 13 | 6 | 0.1671 | -0.0008596 | -0.001965 | 0.0002456 |
+| mobilenet_v2_seed2 | INT8 QAT | 0.002825 | 18 | 5 | 0.01062 | -0.001596 | -0.002705 | -0.000611 |
+| mobilenet_v2_seed2 | INT8 PTQ outlier-aware (ours) | 0.001719 | 9 | 5 | 0.424 | -0.0004912 | -0.001474 | 0.0003684 |
+| mobilenet_v2_seed2 | INT8 QAT outlier-aware (ours) | 0.003561 | 24 | 5 | 0.0005461 | -0.002333 | -0.003561 | -0.001105 |
+| mobilenet_v3_small_seed0 | FP16 (autocast) | 0.0003684 | 2 | 1 | 1 | -0.0001228 | -0.000614 | 0.0002456 |
+| mobilenet_v3_small_seed0 | FP16 (converted) | 0.000614 | 3 | 2 | 1 | -0.0001228 | -0.000614 | 0.0003684 |
+| mobilenet_v3_small_seed0 | INT8 dynamic (Khan et al.) | 0.0003684 | 2 | 1 | 1 | -0.0001228 | -0.000614 | 0.0002456 |
+| mobilenet_v3_small_seed0 | INT8 PTQ | 0.9257 | 7499 | 4 | 0 | -0.9204 | -0.9262 | -0.9144 |
+| mobilenet_v3_small_seed0 | INT8 QAT | 0.369 | 2973 | 4 | 0 | -0.3646 | -0.3754 | -0.3544 |
+| mobilenet_v3_small_seed0 | INT8 PTQ outlier-aware (ours) | 0.008965 | 59 | 11 | 4.466e-09 | -0.005895 | -0.00774 | -0.004053 |
+| mobilenet_v3_small_seed0 | INT8 QAT outlier-aware (ours) | 0.008842 | 56 | 14 | 4.303e-07 | -0.005158 | -0.007123 | -0.003316 |
+| mobilenet_v3_small_seed1 | FP16 (autocast) | 0.0002456 | 0 | 2 | 0.5 | 0.0002456 | 0 | 0.000614 |
+| mobilenet_v3_small_seed1 | FP16 (converted) | 0.0001228 | 0 | 1 | 1 | 0.0001228 | 0 | 0.0003684 |
+| mobilenet_v3_small_seed1 | INT8 dynamic (Khan et al.) | 0.0002456 | 1 | 1 | 1 | 0 | -0.0003684 | 0.0003684 |
+| mobilenet_v3_small_seed1 | INT8 PTQ | 0.9694 | 7868 | 3 | 0 | -0.9659 | -0.9698 | -0.9621 |
+| mobilenet_v3_small_seed1 | INT8 QAT | 0.3424 | 2768 | 8 | 0 | -0.3389 | -0.3495 | -0.3281 |
+| mobilenet_v3_small_seed1 | INT8 PTQ outlier-aware (ours) | 0.008228 | 56 | 9 | 2.049e-09 | -0.005772 | -0.00786 | -0.003807 |
+| mobilenet_v3_small_seed1 | INT8 QAT outlier-aware (ours) | 0.006754 | 44 | 11 | 8.699e-06 | -0.004053 | -0.005895 | -0.00221 |
+| mobilenet_v3_small_seed2 | FP16 (autocast) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v3_small_seed2 | FP16 (converted) | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| mobilenet_v3_small_seed2 | INT8 dynamic (Khan et al.) | 0.0002456 | 2 | 0 | 0.5 | -0.0002456 | -0.000614 | 0 |
+| mobilenet_v3_small_seed2 | INT8 PTQ | 0.9672 | 7838 | 7 | 0 | -0.9617 | -0.9659 | -0.9575 |
+| mobilenet_v3_small_seed2 | INT8 QAT | 0.3506 | 2820 | 11 | 0 | -0.345 | -0.3548 | -0.335 |
+| mobilenet_v3_small_seed2 | INT8 PTQ outlier-aware (ours) | 0.01105 | 73 | 14 | 8.584e-11 | -0.007245 | -0.009459 | -0.005035 |
+| mobilenet_v3_small_seed2 | INT8 QAT outlier-aware (ours) | 0.006631 | 42 | 10 | 9.063e-06 | -0.00393 | -0.005649 | -0.00221 |
