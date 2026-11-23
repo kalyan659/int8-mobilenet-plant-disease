@@ -2,7 +2,7 @@
 
 Code, run records and results for the manuscript
 
-> Kalyanbrat Medhi and Sanjib Kr. Kalita. *Auditing INT8 quantization of MobileNets for plant disease recognition: compression
+> Kalyanbrat Medhi and Sanjib Kumar Kalita. *Auditing INT8 quantization of MobileNets for plant disease recognition: compression
 > accounting, an outlier-aware fix and behavior under field shift.* Submitted to *Computers and Electronics in Agriculture*.
 
 The study trains MobileNetV2 and MobileNetV3-Small on PlantVillage (38 classes, three seeds, one fixed de-duplicated split) and
